@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+Day=$(((RANDOM%7)+1))
+echo $Day
+
+case $Day in
+	1) echo"SUNDAY";;
+	#!/bin/bash 
+
+Day=$(((RANDOM%7)+1))
+echo $Day
+
+esac
