@@ -37,3 +37,21 @@ done
 echo "Sorted in descending order :"
 echo ${resultArray[@]}
 
+j=1
+for (( a=0; a<10; a++ ))
+do
+   
+   for(( b=`expr $a + 1`; b<10; b++ ))
+   do
+      if [[ ${resultArray[a]} -gt ${resultArray[b]} ]]
+      then
+         temp=${resultArray[a]}
+         resultArray[a]=${resultArray[b]}
+         resultArray[b]=$temp
+      fi
+   done
+done
+echo "Sorted in ascending order :"
+echo ${resultArray[@]}
+
+
