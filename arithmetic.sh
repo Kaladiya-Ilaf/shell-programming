@@ -17,3 +17,23 @@ do
 	resultArray[$i]=${Result[compute$j]}
 	j=`expr $j + 1`
 done
+echo "Array of result is :"
+echo ${resultArray[@]}
+
+
+for (( a=0; a<10; a++ ))
+do
+   
+   for(( b=`expr $a + 1`; b<10; b++ ))
+   do
+      if [[ ${resultArray[a]} -lt ${resultArray[b]} ]]
+      then
+         temp=${resultArray[a]}
+         resultArray[a]=${resultArray[b]}
+         resultArray[b]=$temp
+      fi
+   done
+done
+echo "Sorted in descending order :"
+echo ${resultArray[@]}
+
