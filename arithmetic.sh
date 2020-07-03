@@ -10,4 +10,10 @@ Result["compute2"]=`echo $a $b $c | awk '{ printf "%.0f", $1 * $2 + $3 }'`
 Result["compute3"]=`echo $a $b $c | awk '{ printf "%.0f", $3 + $1 / $2 }'`
 Result["compute4"]=`echo $a $b $c | awk '{ printf "%.0f", $1 % $2 + $3 }'`
 
-
+lenResult=${#Result[@]}
+j=1
+for (( i=0; i<$lenResult; i++ ))
+do
+	resultArray[$i]=${Result[compute$j]}
+	j=`expr $j + 1`
+done
