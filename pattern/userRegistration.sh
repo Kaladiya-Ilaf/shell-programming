@@ -1,32 +1,37 @@
 #!/bin/bash 
-
-function validateUser(){
-	echo $1
-	echo $2
-	userInput=$1
-	pat=$2
-	if [[ $userInput =~ $pat ]]
-	then
-   	echo "Valid!"
-	else
-   	echo "Invalid!"
-	fi
-}
-
-Name="^[A-Z][a-z]{2,}$"
-emailId="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})*$"
-mobileFormat="^91[0-9]{10}$"
+declare -a pattern
+declare -a userInput
+pattern[0]="^[A-Z][a-z]{2,}$"
+pattern[1]="^[A-Z][a-z]{2,}$"
+pattern[2]="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})*$"
+pattern[3]="^91\s[0-9]{10}$"
+#pattern[4]="^?=.*[a-z])$"
 
 echo "Welcome For Registration!!!"
 
 read -p "First Name: " fname
-validateUser $fname $Name
+userInput[0]=$fname
 
 read -p "Last Name: " lname
-validateUser $lname $Name
+userInput[1]=$lname
 
 read -p "E-mail: " email
-validateUser $email $emailId
+userInput[2]=$email
 
 read -p "Mobile: " mobile
-validateUser $mobile $mobileFormat
+userInput[3]=$mobile
+
+i=0
+
+
+while [ $i -lt 4 ]
+do
+	if [[ $userInput[$i] =~ $pattern[$i] ]]
+	then
+		echo "${userInput[$i]} is VALID"
+
+	else
+		echo "${userInput[i]} is VALID"
+	fi
+	i=`expr $i + 1`
+done
