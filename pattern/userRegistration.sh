@@ -1,37 +1,42 @@
 #!/bin/bash 
 declare -a pattern
 declare -a userInput
+declare -a checkInput
 pattern[0]="^[A-Z][a-z]{2,}$"
 pattern[1]="^[A-Z][a-z]{2,}$"
 pattern[2]="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})*$"
-pattern[3]="^91\s[0-9]{10}$"
+pattern[3]="^91\s[1-9]{10}$"
 #pattern[4]="^?=.*[a-z])$"
 
 echo "Welcome For Registration!!!"
 
-read -p "First Name: " fname
-userInput[0]=$fname
+read -p "First Name: " userInput[0]
 
-read -p "Last Name: " lname
-userInput[1]=$lname
+read -p "Last Name: " userInput[1]
 
-read -p "E-mail: " email
-userInput[2]=$email
+read -p "E-mail: " userInput[2]
 
-read -p "Mobile: " mobile
-userInput[3]=$mobile
+read -p "Mobile: " userInput[3]
 
+
+j=0
 i=0
 
 
-while [ $i -lt 4 ]
+while [ $i -lt 4 ] && [ $j -lt 4 ]
 do
-	if [[ $userInput[$i] =~ $pattern[$i] ]]
-	then
-		echo "${userInput[$i]} is VALID"
-
-	else
-		echo "${userInput[i]} is VALID"
-	fi
+if [[ ${userInput[$i]} =~ ${pattern[$j]} ]]
+then
+	echo "${userInput[$i]} is VALID"
+	checkInput[$i]=1
 	i=`expr $i + 1`
+	j=`expr $j + 1`
+else
+   echo "${userInput[$i]} is INVALID"
+	checkInput[$i]=0
+   i=`expr $i + 1`
+   j=`expr $j + 1`
+fi
 done
+
+
