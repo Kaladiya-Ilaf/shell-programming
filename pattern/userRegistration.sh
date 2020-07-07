@@ -1,7 +1,6 @@
 #!/bin/bash 
 declare -a pattern
 declare -a userInput
-declare -a checkInput
 pattern[0]="^[A-Z][a-z]{2,}$"
 pattern[1]="^[A-Z][a-z]{2,}$"
 pattern[2]="^[0-9a-zA-Z]+([._+-][0-9a-zA-Z]+)*@[0-9a-zA-Z]+.[a-zA-Z]{2,4}([.][a-zA-Z]{2})*$"
@@ -28,12 +27,10 @@ do
 if [[ ${userInput[$i]} =~ ${pattern[$j]} ]]
 then
 	echo "${userInput[$i]} is VALID"
-	checkInput[$i]=1
 	i=`expr $i + 1`
 	j=`expr $j + 1`
 else
    echo "${userInput[$i]} is INVALID"
-	checkInput[$i]=0
    i=`expr $i + 1`
    j=`expr $j + 1`
 fi
